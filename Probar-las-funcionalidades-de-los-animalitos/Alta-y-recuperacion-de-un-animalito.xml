@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="b463b318-f8de-4b73-ab0d-44381ae8a9bf" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Alta y recuperacion de un animalito" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="IncludeOverview">true</con:setting>
+    <con:setting id="IncludeResults">true</con:setting>
+    <con:setting id="FlowLayout">false</con:setting>
+    <con:setting id="ErrorDetails">true</con:setting>
+    <con:setting id="IncludeCoverage">true</con:setting>
+    <con:setting id="b463b318-f8de-4b73-ab0d-44381ae8a9bffileName">Alta-y-recuperacion-de-un-animalito</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>20</con:savedRecentRuns>
+  <con:testStep type="VirtRunnerTestStep" name="Iniciar el servidor virtual" id="32b3c1cc-0123-414c-a9ee-5033567c52e9">
+    <con:settings/>
+    <con:config>
+      <url>localhost</url>
+      <server>Tienda de animalitos Virtual Service</server>
+      <action>run</action>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Dar de alta un animalito con datos OK" id="ffdde6ab-c51a-40e8-b309-24489794c0d4">
+    <con:settings/>
+    <con:config service="Tienda de animalitos" methodName="Alta de animal" resourcePath="/pet" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Dar de alta un animalito con datos OK" id="7c7785ec-67c4-4d55-920a-46c058fb91a1" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request>{
+  "category": {
+    "name": "Gatito"
+  },
+  "name": "Ivancito3",
+  "photoUrls": [
+  ],
+  "tags": [
+    {
+      "name": "Mimoso"
+    }
+  ],
+  "status": "available"
+}</con:request>
+        <con:originalUri>https://petstore.swagger.io/v2/pet</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="d19120b2-3fff-464c-9b1d-b52f4c71dd33">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Existence Match" id="7b2ee05f-adc8-42c3-9646-57353c2f97d1" name="Check for existence of [id]">
+          <con:configuration>
+            <path>$.['id']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath RegEx Match" id="5b1227cd-5b70-44fa-9204-62c8502cb1af" name="Match content of [id] using RegEx">
+          <con:configuration>
+            <path>$['id']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+            <regEx>^[0-9]+$</regEx>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="Guardar el id del nuevo animalito" id="5d6b0e0e-9a7a-433a-9308-a684f7e455d2">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Dar de alta un animalito con datos OK</con:sourceStep>
+        <con:sourcePath>$['id']</con:sourcePath>
+        <con:targetType>id_alta</con:targetType>
+        <con:targetStep>Datos del animalito</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Recuperar los datos del nuevo animalito" id="4e560cd1-9af5-4293-ae95-8dfdd2bafd0b">
+    <con:settings/>
+    <con:config service="Tienda de animalitos" methodName="Recuperar animal" resourcePath="/pet/{petId}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Recuperar los datos del nuevo animalito" id="ffbb9810-d019-4045-a506-af605aee87dc" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:request/>
+        <con:originalUri>https://petstore.swagger.io/v2/pet/9223372036854649900</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="05a82ec3-b6b8-458f-984e-d31298757b6d">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath RegEx Match" name="Match content of [id] using RegEx" id="32c0c5fd-c3b6-4559-ad03-f05d4b4afa2c">
+          <con:configuration>
+            <path>$['id']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+            <regEx>^[0-9]+$</regEx>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Simple Equals" id="e2feb925-fd54-4869-bb44-b240f42b8cc0" name="Equals">
+          <con:configuration>
+            <patternObjectId>ffdde6ab-c51a-40e8-b309-24489794c0d4</patternObjectId>
+            <patternProperty>Response</patternProperty>
+            <caseSensitive>true</caseSensitive>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="petId" value="${Dar de alta un animalito con datos OK#Response#$['id']}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="Guardar el id del animalito recuperado" id="c01f5bbc-23de-4013-9948-4873d5620a51">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true">
+        <con:name>id</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>Recuperar los datos del nuevo animalito</con:sourceStep>
+        <con:sourcePath>$['id']</con:sourcePath>
+        <con:targetType>id_recuperado</con:targetType>
+        <con:targetStep>Datos del animalito</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="properties" name="Datos del animalito" id="371b4366-6545-442f-a208-2836c33feba8">
+    <con:settings/>
+    <con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:properties>
+        <con:property>
+          <con:name>id_alta</con:name>
+          <con:value>27</con:value>
+        </con:property>
+        <con:property>
+          <con:name>id_recuperado</con:name>
+          <con:value>27</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="assertionteststep" name="Comparar datos del alta con los recuperados posteriormente" id="9912cf73-8013-4454-9188-d73e49a20405">
+    <con:settings/>
+    <con:config xsi:type="con:AssertionTestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:entry>
+        <con:id>ca2dbc38-c682-4cb2-a19b-c296df23bfae</con:id>
+        <con:isGroup>false</con:isGroup>
+        <con:sourceId>371b4366-6545-442f-a208-2836c33feba8</con:sourceId>
+        <con:propertyName>id_recuperado</con:propertyName>
+        <con:assertion type="Simple Equals" name="Equals" id="5e524469-be78-4f61-9988-422d020a79a8">
+          <con:configuration>
+            <patternObjectId>371b4366-6545-442f-a208-2836c33feba8</patternObjectId>
+            <patternProperty>id_alta</patternProperty>
+            <caseSensitive>true</caseSensitive>
+          </con:configuration>
+        </con:assertion>
+      </con:entry>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="VirtRunnerTestStep" name="Detengo el servidor virtual" id="1742f1eb-f8d4-4e52-8755-9d3399bd1903">
+    <con:settings/>
+    <con:config>
+      <url>localhost</url>
+      <server>Tienda de animalitos Virtual Service</server>
+      <action>stop</action>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>ffdde6ab-c51a-40e8-b309-24489794c0d4</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>4e560cd1-9af5-4293-ae95-8dfdd2bafd0b</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="588003cb-6d8f-4058-be4f-03544bf47194" name="Probar las funcionalidades de los animalitos" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="588003cb-6d8f-4058-be4f-03544bf47194fileName">Probar-las-funcionalidades-de-los-animalitos</con:setting>
+  </con:settings>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testSuite>

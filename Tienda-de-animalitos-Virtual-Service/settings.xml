@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:restMockService id="dfce9b3d-d927-4ef2-bd73-4b7d5610449e" port="9999" path="/" host="localhost" name="Tienda de animalitos Virtual Service" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="dfce9b3d-d927-4ef2-bd73-4b7d5610449efileName">Tienda-de-animalitos-Virtual-Service</con:setting>
+  </con:settings>
+  <con:properties/>
+  <con:constraints>
+    <con:congestion>0</con:congestion>
+    <con:inputBandwidth>-1</con:inputBandwidth>
+    <con:outputBandwidth>-1</con:outputBandwidth>
+    <con:maxThreadPoolCapacity>20</con:maxThreadPoolCapacity>
+    <con:coreThreadPoolCapacity>5</con:coreThreadPoolCapacity>
+    <con:virtError>
+      <con:start>0</con:start>
+      <con:endless>true</con:endless>
+    </con:virtError>
+  </con:constraints>
+  <con:headerValidator type="NONE"/>
+</con:restMockService>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:restMockAction name="/pet" method="POST" resourcePath="/pet" id="17d8e2ba-070c-432f-bfb3-aa956d7142a7" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="17d8e2ba-070c-432f-bfb3-aa956d7142a7fileName">%2Fpet</con:setting>
+  </con:settings>
+  <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+  <con:dispatchConfig/>
+  <con:dispatchXPath/>
+  <con:routeScript/>
+  <con:response name="Response 1" id="9236d345-ad68-4357-81b2-486fc85e3f3d" httpResponseStatus="200" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570">
+    <con:settings/>
+    <con:responseContent>{
+   "id" : 27,
+   "category" : {
+      "id" : 0,
+      "name" : "Chimpance"
+   },
+   "name" : "Lucas",
+   "photoUrls" : [ ],
+   "tags" : [
+      {
+         "id" : 0,
+         "name" : "Mimoso"
+      }
+   ],
+   "status" : "available"
+}</con:responseContent>
+  </con:response>
+</con:restMockAction>

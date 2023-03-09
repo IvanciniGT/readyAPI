@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="pet" path="/pet" id="ff357cac-46d1-4a3c-bd83-10dc2ec748e0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="ff357cac-46d1-4a3c-bd83-10dc2ec748e0fileName">pet</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:resource name="{petId}" path="{petId}" id="f65d99c6-da9f-44f8-931f-daad08858f0f">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>petId</con:name>
+        <con:value>petId</con:value>
+        <con:style>TEMPLATE</con:style>
+        <con:default>petId</con:default>
+      </con:parameter>
+    </con:parameters>
+    <con:method name="Recuperar animal" id="91e9219e-61bd-43fd-8608-9202b5afa08f" method="GET">
+      <con:settings/>
+      <con:parameters/>
+      <con:request name="Request 1" id="ceb5a91b-c152-49f4-bd4f-76ef53e022dc" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://petstore.swagger.io/v2/pet/27</con:originalUri>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="petId" value="27"/>
+        </con:parameters>
+      </con:request>
+    </con:method>
+  </con:resource>
+  <con:method name="Alta de animal" id="3e2a8c02-3096-4325-b265-b7a719c2756d" method="POST">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="Plantilla de alta de animal con datos OK" id="d0a72efa-3b74-4763-92f7-b6476132ee89" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:request>{
+  "category": {
+    "name": "Gatito"
+  },
+  "name": "Ivancito3",
+  "photoUrls": [
+  ],
+  "tags": [
+    {
+      "name": "Mimoso"
+    }
+  ],
+  "status": "available"
+}</con:request>
+      <con:originalUri>https://petstore.swagger.io/v2/pet</con:originalUri>
+      <con:credentials>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>
